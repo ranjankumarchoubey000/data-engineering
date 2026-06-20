@@ -1,4 +1,4 @@
-# Data Engineering
+# Scala : Episode 1, Part-2
 
 ## Install SDKMAN
 
