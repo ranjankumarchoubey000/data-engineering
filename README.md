@@ -1,62 +1,126 @@
-# data-engineering
+# Data Engineering
 
-# Install SDKMAN
+## Install SDKMAN
+
+```bash
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
+```
 
+## Install Java, Scala and sbt
 
+```bash
 sdk install java 11.0.21-tem
 sdk install scala 2.13.14
 sdk install sbt 1.9.7
+```
 
+## Download Apache Spark 3.5.8 (Pre-built for Hadoop 3)
 
-# Download Spark 3.5.8 pre-built for Hadoop 3
+```bash
 wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
+```
 
-# Extract (this is ~400 MB, takes a minute)
+## Extract Spark
+
+```bash
 tar -xzf spark-3.5.8-bin-hadoop3.tgz
+```
 
-# Move to standard location
+## Move Spark to a Standard Location
+
+```bash
 sudo mv spark-3.5.8-bin-hadoop3 /opt/spark
+```
 
-# Set environment variables
+## Configure Environment Variables
+
+```bash
 echo 'export SPARK_HOME=/opt/spark' >> ~/.bashrc
 echo 'export PATH=$PATH:$SPARK_HOME/bin' >> ~/.bashrc
 source ~/.bashrc
+```
 
-# Verify
+## Verify Spark Installation
+
+```bash
 spark-shell --version
-# version 3.5.8
-# Using Scala version 2.12.18  ← NOTICE: confirms Scala 2.12
+```
 
-# What's in the Spark bin directory?
+Expected output:
+
+```text
+version 3.5.8
+Using Scala version 2.12.18
+```
+
+## Explore Spark Commands
+
+```bash
 ls $SPARK_HOME/bin/
-# spark-shell       ← Scala REPL with SparkSession
-# pyspark           ← Python REPL with SparkSession
-# spark-submit      ← submit jobs to cluster
-# spark-sql         ← SQL-only shell
-# spark-class       ← internal launcher
+```
 
+Common tools:
 
-# ===== VERIFICATION CHECKLIST =====
-# 1. Java
+* `spark-shell` — Scala REPL with SparkSession
+* `pyspark` — Python REPL with SparkSession
+* `spark-submit` — Submit jobs to a Spark cluster
+* `spark-sql` — Interactive SQL shell
+* `spark-class` — Internal Spark launcher
+
+---
+
+# Verification Checklist
+
+## 1. Java
+
+```bash
 java -version
-#   openjdk version "11.0.x"
-
 javac -version
-#   javac 11.0.x
-
 echo $JAVA_HOME
-#   /usr/lib/jvm/java-11-openjdk-amd64
+```
 
-# 2. Scala
+Expected:
+
+```text
+openjdk version "11.0.x"
+javac 11.0.x
+/usr/lib/jvm/java-11-openjdk-amd64
+```
+
+## 2. Scala
+
+```bash
 scala -version
-#   Scala code runner version 2.12.18
+```
 
-# 3. sbt
+Expected:
+
+```text
+Scala code runner version 2.12.18
+```
+
+## 3. sbt
+
+```bash
 sbt --version
-#   sbt script version: 1.9.x
+```
 
-# 4. Spark
+Expected:
+
+```text
+sbt script version: 1.9.x
+```
+
+## 4. Spark
+
+```bash
 spark-shell --version
-#   version 3.5.8, Using Scala version 2.12.18
+```
+
+Expected:
+
+```text
+version 3.5.8
+Using Scala version 2.12.18
+```
